@@ -9,9 +9,10 @@ import { ShoppingCart } from 'lucide-react';
 
 interface FurnitureCardProps {
   item: FurnitureItem;
+  animationDelay?: number; // Optional delay for staggered animation
 }
 
-export function FurnitureCard({ item }: FurnitureCardProps) {
+export function FurnitureCard({ item, animationDelay = 0 }: FurnitureCardProps) {
   const handleOrderClick = () => {
     const message = encodeURIComponent(
       `Hello Arty Furniture, I'm interested in ordering the ${item.name}. Image: ${item.imageUrl}`
@@ -27,26 +28,29 @@ export function FurnitureCard({ item }: FurnitureCardProps) {
   };
 
   return (
-    <Card className="overflow-hidden transition-all duration-300 ease-in-out hover:shadow-xl hover:scale-[1.02]">
+    <Card
+        className="overflow-hidden transition-all duration-300 ease-in-out hover:shadow-xl hover:scale-[1.03] animate-fadeInUp"
+        style={{ animationDelay: `${animationDelay}ms` }} // Apply staggered delay
+        >
       <CardHeader className="p-0">
-        <div className="relative aspect-[3/2] w-full">
+        <div className="relative aspect-[3/2] w-full overflow-hidden"> {/* Added overflow-hidden */}
           <Image
             src={item.imageUrl}
             alt={item.name}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="object-cover"
+            className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105" // Zoom effect on hover
             priority={item.id === 'sofa-01'} // Prioritize loading for the first image maybe
           />
         </div>
       </CardHeader>
       <CardContent className="p-4 pb-2">
-        <CardTitle className="text-lg font-semibold mb-1">{item.name}</CardTitle>
+        <CardTitle className="text-lg font-semibold mb-1 transition-colors duration-300 group-hover:text-primary">{item.name}</CardTitle>
         <CardDescription className="text-sm text-muted-foreground line-clamp-2">{item.description}</CardDescription>
       </CardContent>
       <CardFooter className="p-4 pt-2">
         <Button
-            className="w-full"
+            className="w-full btn-transition" // Added btn-transition
             onClick={handleOrderClick}
             aria-label={`Order ${item.name} via WhatsApp`}
             >
@@ -56,3 +60,4 @@ export function FurnitureCard({ item }: FurnitureCardProps) {
     </Card>
   );
 }
+```

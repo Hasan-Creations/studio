@@ -82,8 +82,49 @@ body {
   * {
     @apply border-border;
   }
+  html {
+    @apply scroll-smooth; /* Add smooth scrolling */
+  }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground overflow-x-hidden; /* Prevent horizontal scroll */
     font-family: var(--font-geist-sans);
   }
+
+  /* Define custom animations */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fadeIn {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+  .animate-fadeInUp {
+    animation: fadeInUp 0.6s ease-out forwards;
+     opacity: 0; /* Start hidden */
+  }
+
+   /* Stagger animation delays */
+  .stagger-delay-100 { animation-delay: 100ms; }
+  .stagger-delay-200 { animation-delay: 200ms; }
+  .stagger-delay-300 { animation-delay: 300ms; }
+  .stagger-delay-400 { animation-delay: 400ms; }
+  .stagger-delay-500 { animation-delay: 500ms; }
 }
+
+@layer components {
+  /* Add subtle transition to all buttons */
+  .btn-transition {
+    @apply transition-all duration-300 ease-in-out;
+  }
+  .link-transition {
+     @apply transition-colors duration-300 ease-in-out;
+  }
+}
+
+/* Apply custom animation utility classes */
+@tailwind utilities;
+```
