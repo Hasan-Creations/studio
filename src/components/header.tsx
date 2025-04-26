@@ -1,13 +1,21 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Sofa, Armchair, Table } from 'lucide-react'; // Using appropriate icons
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Menu, Sofa, Armchair, Table } from 'lucide-react'; // Using appropriate icons
 
 export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 items-center mx-auto px-4">
         <Link href="/" className="flex items-center space-x-2 mr-6">
-          {/* Replace with a proper logo if available */}
+          {/* Arty Furniture Logo */}
            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-primary">
              <path d="M10 2v7.31"/>
              <path d="M14 9.31V2"/>
@@ -18,21 +26,85 @@ export function Header() {
            </svg>
           <span className="font-bold text-lg">Arty Furniture</span>
         </Link>
-        <nav className="flex items-center space-x-4 lg:space-x-6 flex-1">
-          {/* Basic navigation - can be expanded later */}
-          {/* Example navigation - can be replaced with dynamic category filtering */}
-          {/* <Link href="/#sofas" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
-            Sofas
+        <nav className="hidden md:flex items-center space-x-4 lg:space-x-6 flex-1">
+          {/* Dropdown for Categories */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="text-sm font-medium text-muted-foreground hover:text-primary">
+                Categories <Menu className="ml-1 h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuLabel>Furniture Types</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+               {/* Link to sections or filtered pages later */}
+              <DropdownMenuItem asChild>
+                <Link href="/#sofas" className="flex items-center">
+                  <Sofa className="mr-2 h-4 w-4" />
+                  Sofas
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/#chairs" className="flex items-center">
+                  <Armchair className="mr-2 h-4 w-4" />
+                  Chairs
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Link href="/#tables" className="flex items-center">
+                  <Table className="mr-2 h-4 w-4" />
+                  Tables
+                </Link>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          {/* Other Navigation Links */}
+          <Link href="/about" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
+            About Us
           </Link>
-          <Link href="/#chairs" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
-            Chairs
+          <Link href="/contact" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
+            Contact Us
           </Link>
-           <Link href="/#tables" className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
-            Tables
-          </Link> */}
         </nav>
-         {/* Optional: Add contact or other buttons */}
-        {/* <Button variant="outline" size="sm">Contact Us</Button> */}
+
+        {/* Mobile Menu Button */}
+        <div className="md:hidden ml-auto">
+             <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon">
+                    <Menu className="h-5 w-5" />
+                    <span className="sr-only">Toggle Menu</span>
+                </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                    <DropdownMenuLabel>Navigation</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem asChild>
+                        <Link href="/">Home</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                        <Link href="/#sofas">Sofas</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                        <Link href="/#chairs">Chairs</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                        <Link href="/#tables">Tables</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem asChild>
+                        <Link href="/about">About Us</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                        <Link href="/contact">Contact Us</Link>
+                    </DropdownMenuItem>
+                </DropdownMenuContent>
+            </DropdownMenu>
+        </div>
+
+         {/* Optional: Add contact or other buttons if needed */}
+        {/* <Button variant="outline" size="sm" className="hidden md:inline-flex ml-auto">Contact Us</Button> */}
       </div>
     </header>
   );
