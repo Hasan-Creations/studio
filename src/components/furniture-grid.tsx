@@ -22,4 +22,3 @@ export function FurnitureGrid({ items }: FurnitureGridProps) {
     </div>
   );
 }
-```

@@ -60,4 +60,3 @@ export function FurnitureCard({ item, animationDelay = 0 }: FurnitureCardProps) 
     </Card>
   );
 }
-```
