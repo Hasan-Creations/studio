@@ -7,7 +7,7 @@ export interface FurnitureItem {
 }
 
 // Replace with your actual WhatsApp number
-export const WHATSAPP_NUMBER = '1234567890'; // Example: Use international format without '+' or spaces
+export const WHATSAPP_NUMBER = '923292599756'; // Example: Use international format without '+' or spaces
 
 export const furnitureData: FurnitureItem[] = [
   {
