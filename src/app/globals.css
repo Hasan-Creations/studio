@@ -1,4 +1,4 @@
-@tailwind base;
+@@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -127,4 +127,4 @@ body {
 
 /* Apply custom animation utility classes */
 @tailwind utilities;
-```
+
